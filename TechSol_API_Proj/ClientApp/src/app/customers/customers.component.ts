@@ -10,8 +10,9 @@ import { CustomerService } from '../services/customer.service';
 })
 export class CustomersComponent implements OnInit {
   @ViewChild('customerForm') customerForm!: NgForm;
+  customer: Customer = new Customer();
   customers: Customer[] = [];
-  customer: Customer = {}; // Object for binding form data
+  //customer: Customer = {}; // Object for binding form data
   isUpdateMode: boolean = false; // Flag to check if it's add or update operation
 
   constructor(private customerService: CustomerService) { }
@@ -52,7 +53,9 @@ export class CustomersComponent implements OnInit {
     this.customerService.addCustomer(this.customer).subscribe(
       data => {
         this.customers.push(data);
-        this.customer = {}; // Reset the form
+        this.customerForm.reset();  // Reset the form here
+        this.customer = new Customer(); // Reset the customer object
+        this.isUpdateMode = false; // Ensure you're not in update mode
       },
       error => {
         console.error('Error adding customer', error);
