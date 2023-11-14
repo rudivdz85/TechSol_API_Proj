@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Customer } from '../models/customer.model';
 import { CustomerService } from '../services/customer.service';
 
@@ -8,6 +9,7 @@ import { CustomerService } from '../services/customer.service';
   styleUrls: ['./customers.component.css']
 })
 export class CustomersComponent implements OnInit {
+  @ViewChild('customerForm') customerForm!: NgForm;
   customers: Customer[] = [];
   customer: Customer = {}; // Object for binding form data
   isUpdateMode: boolean = false; // Flag to check if it's add or update operation
@@ -32,10 +34,16 @@ export class CustomersComponent implements OnInit {
   }
 
   submitCustomer(): void {
-    if (this.isUpdateMode) {
-      this.updateCustomer();
+    // Check if the form is valid
+    if (this.customerForm.valid) {
+      if (this.isUpdateMode) {
+        this.updateCustomer();
+      } else {
+        this.addCustomer();
+      }
     } else {
-      this.addCustomer();
+      // Handle the invalid form case
+      console.error('The form is invalid');
     }
   }
 
