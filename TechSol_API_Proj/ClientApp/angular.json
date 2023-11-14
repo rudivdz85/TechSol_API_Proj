@@ -132,5 +132,8 @@
       }
     }
   },
-  "defaultProject": "TechSol_API_Proj"
+  "defaultProject": "TechSol_API_Proj",
+  "cli": {
+    "analytics": false
+  }
 }

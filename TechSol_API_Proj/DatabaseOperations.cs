@@ -47,7 +47,7 @@ namespace TechSol_API_Proj
                     {
                         return new Customer
                         {
-                            CustomerId = (int)reader["CustomerID"],
+                            Id = (int)reader["CustomerID"],
                             FirstName = reader["FirstName"].ToString(),
                             LastName = reader["LastName"].ToString(),
                             DateOfBirth = (DateTime)reader["DateOfBirth"]
@@ -75,7 +75,7 @@ namespace TechSol_API_Proj
                         {
                             var customer = new Customer
                             {
-                                CustomerId = (int)reader["CustomerID"],
+                                Id = (int)reader["CustomerID"],
                                 FirstName = reader["FirstName"].ToString(),
                                 LastName = reader["LastName"].ToString(),
                                 DateOfBirth = (DateTime)reader["DateOfBirth"]
